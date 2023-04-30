@@ -1,0 +1,58 @@
+﻿@model Pagination<DepartmentListDto>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="row">
+    <div class="col-md-6"><a asp-controller="Department" asp-action="Add" class="btn btn-success">Yeni</a></div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#Id </th>
+                    <th scope="col">Qısa Ad</th>
+                    <th scope="col">Tam Ad</th>
+                    <th scope="col">Qeyd</th>
+                    <th scope="col">Yaranma Tarixi</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <th scope="row">
+                            # @item.Id
+                        </th>
+                        <td>@item.ShortName </td>
+                        <td>@item.FullName </td>
+                        <td>@Html.Raw(item.Record)</td>
+                        <td>@item.DateOfEntry.ToString("dd/MM/yyyy")</td>
+                        <td >
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a type="button" asp-controller="Department" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-success">Ətraflı</a>
+                                <button class="btn btn-outline-danger" onclick="removeItem(@item.Id,`@item.ShortName`,`@Url.Action("Delete","Department")`,this)">Sil</button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+    <div class="col-md-12">
+
+        <div style="padding-top:20px">
+            @Model.GetPagenation(Url,"List")
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/lib/_common.js"></script>
+}

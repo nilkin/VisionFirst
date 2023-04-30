@@ -3,14 +3,13 @@ using Application.Services.Source;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
-using System.Numerics;
 
 namespace Application.Feature.Departments.Commands
 {
 
     public class CreateDepartmentCommand : IRequest<int>
     {
-        public DepartmentAddDto DepartmentAddDto { get; set; }
+        public DepartmentAddDto? DepartmentAddDto;
         public sealed class Handler : IRequestHandler<CreateDepartmentCommand, int>
         {
             private readonly IMapper _mapper;

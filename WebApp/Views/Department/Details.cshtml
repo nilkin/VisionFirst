@@ -4,36 +4,84 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<form asp-action="Details" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Qısa Ad</label>
+                <input disabled="disabled" asp-for="ShortName" class="form-control" />
+                <span asp-validation-for="ShortName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Tam Ad</label>
+                <input disabled="disabled" asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Qeyd</label>
+                <textarea asp-for="Record" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6 mt-4">
+            <div class="row">
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <a href="#" id="active" class="btn btn-outline-primary ">Aktiv et</a>
+                        </div>
+                    </div>
+                </div> 
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <button id="update" type="submit" class="btn btn-outline-success d-none">Təsdiq</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <a asp-controller="Department" asp-action="List" class="btn btn-outline-warning">Siyahı</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
-<div>
-    <h4>DepartmentDetailDto</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ShortName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ShortName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FullName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FullName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Record)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Record)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-    </dl>
-</div>
+@section Scripts {
+    @{
+        <script src="~/lib/ckeditor/ckeditor.js"></script>
+        <script>
+            $(document).ready(function () {
 
+                var editor = CKEDITOR.replace('Record', {
+                    readOnly: true
+                });
+                $('#active').on('click', function () {
+                    if ($("#update").hasClass("d-none")) {
+                        $("#update").removeClass("d-none");
+                        $('input').prop('disabled', false);
+                        
+                        editor.setReadOnly(false);
+                    }
+                    else{
+                        $("#update").addClass("d-none");
+                        $('input').prop('disabled', true);
+
+                        editor.setReadOnly(true);
+
+                    }
+                    
+                });
+
+            });
+        </script>
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

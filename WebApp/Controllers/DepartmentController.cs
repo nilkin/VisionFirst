@@ -1,8 +1,10 @@
 ﻿using Application.Feature.Departments.Commands;
 using Application.Feature.Departments.Dtos;
 using Application.Feature.Departments.Queries;
+using Application.Tools;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Drawing.Printing;
 
 namespace WebApp.Controllers
 {
@@ -17,19 +19,48 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(DepartmentAddDto model)
         {
-            CreateDepartmentCommand createDepartmentCommand = new ()
-            { 
-                DepartmentAddDto = model 
-            };
-            var result = await Mediator.Send(createDepartmentCommand);
-            return RedirectToAction(nameof(Details), new { id = result});
+            if (ModelState.IsValid)
+            {
+                CreateDepartmentCommand createDepartmentCommand = new()
+                {
+                    DepartmentAddDto = model
+                };
+                int result = await Mediator.Send(createDepartmentCommand);
+                return RedirectToAction(nameof(Details), new { id = result });
+            }
+            return View(model);
         }
 
         public async Task<IActionResult> Details(int id)
         {
-            var product = await Mediator.Send(new GetDepartmentQuery { Id = id });
+            DepartmentDetailDto result = await Mediator.Send(new GetDepartmentQuery { Id = id });
+            return View(result);
+        }
 
-            return View(product);
+        [HttpPost]
+        public async Task<IActionResult> Details(DepartmentDetailDto model)
+        {
+            UpdateDepartmentCommand updateDepartmentCommand = new()
+            {
+                DepartmentDetailDto = model
+            };
+            DepartmentDetailDto result = await Mediator.Send(updateDepartmentCommand);
+            return View(nameof(Details));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> List(int pageIndex = 1, int pageSize = 10)
+        {
+            IList<DepartmentListDto> result = await Mediator.Send(new GetListDepartmentQuery());
+            var pageModel = new Pagination<DepartmentListDto>(result, pageIndex, pageSize);
+            return View(pageModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            string result = await Mediator.Send(new DeleteDepartmentComand { Id = id });
+            return Ok(result);
         }
     }
 }

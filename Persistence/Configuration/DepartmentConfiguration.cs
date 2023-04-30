@@ -12,7 +12,7 @@ namespace Persistence.Configuration
             builder.Property(a => a.Id).UseIdentityColumn();
             builder.Property(a => a.ShortName).IsRequired();
             builder.Property(a => a.FullName).IsRequired();
-            builder.Property(a => a.Record).HasColumnType("ntext");
+            builder.Property(a => a.Record).HasColumnType("ntext").HasDefaultValue(null);
             builder.Property(a => a.DateOfEntry).HasColumnType("datetime").HasDefaultValue(DateTime.UtcNow);
 
             builder.HasMany(d => d.Positions)
