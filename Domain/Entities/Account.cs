@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities
+﻿using Domain.Enums;
+
+namespace Domain.Entities
 {
     public partial class Account : Entity
     {
@@ -6,5 +8,6 @@
         public string Password { get; set; }
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
+        public Role Role { get; set; }
     }
 }

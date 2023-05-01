@@ -1,6 +1,4 @@
-﻿using Application.Feature.Departments.Commands;
-using Application.Feature.Departments.Dtos;
-using Application.Feature.Departments.Queries;
+﻿using Application.Feature.Departments.Queries;
 using Application.Feature.Positions.Commands;
 using Application.Feature.Positions.Dtos;
 using Application.Feature.Positions.Queries;
@@ -55,7 +53,7 @@ namespace WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> List(int pageIndex = 1, int pageSize = 10)
         {
-           var result = await Mediator.Send(new GetListPositionQuery());
+            var result = await Mediator.Send(new GetListPositionQuery());
             var pageModel = new Pagination<PositionListDto>(result, pageIndex, pageSize);
             return View(pageModel);
         }

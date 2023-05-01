@@ -1,4 +1,4 @@
-﻿@model PositionDetailDto
+﻿@model LeaveDayDetailDto
 
 @{
     ViewData["Title"] = "Details";
@@ -8,23 +8,28 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label class="control-label">Ad</label>
-                <input disabled="disabled" asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+                <label class="control-label">Qeyd</label>
+                <input disabled="disabled" asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Gün Sayı</label>
+                <input  disabled="disabled" asp-for="NumberOfDays" class="form-control" />
+                <span asp-validation-for="NumberOfDays" class="text-danger"></span>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
                 <label class="control-label">Şöbə</label>
-                <select disabled="disabled" asp-for="DepartmentId" class="form-control">
+                <select disabled="disabled" asp-for="PositionId" class="form-control">
                     <option value="" disabled selected hidden>Seçim edin</option>
-                    @foreach (var item in Model.Departments)
+                    @foreach (var item in Model.Positions)
                     {
-                        <option value="@item.Id">@item.FullName</option>
+                        <option value="@item.Id">@item.Title</option>
                     }
-
                 </select>
-                <span asp-validation-for="DepartmentId" class="text-danger"></span>
             </div>
         </div>
         <div class="col-md-6 mt-4">
@@ -46,7 +51,7 @@
                 <div class="col-md-4 ">
                     <div class="form-group">
                         <div class="form-group">
-                            <a asp-controller="Position" asp-action="List" class="btn btn-outline-warning">Siyahı</a>
+                            <a asp-controller="LeaveDay" asp-action="List" class="btn btn-outline-warning">Siyahı</a>
                         </div>
                     </div>
                 </div>
@@ -63,6 +68,7 @@
                 $('#active').on('click', function () {
                     if ($("#update").hasClass("d-none")) {
                         $("#update").removeClass("d-none");
+                        $('input,select').prop('disabled', false);
                     }
                     else {
                         $("#update").addClass("d-none");
