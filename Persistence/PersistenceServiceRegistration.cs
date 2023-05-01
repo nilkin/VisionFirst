@@ -17,6 +17,7 @@ namespace Persistence
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IPositionRepository, PositionRepository>();
             services.AddScoped<ILeaveDayRepository, LeaveDayRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
             return services;
         }

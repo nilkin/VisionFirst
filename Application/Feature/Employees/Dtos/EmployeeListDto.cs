@@ -1,15 +1,14 @@
-﻿namespace Domain.Entities
+﻿using Domain.Dtos;
+using Domain.Entities;
+
+namespace Application.Feature.Employees.Dtos
 {
-    public partial class Employee : Entity
+    public class EmployeeListDto : IDto
     {
         public string Name { get; set; }
         public string Surname { get; set; }
         public DateTime DateOfEntry { get; set; }
         public int PositionId { get; set; }
         public Position Position { get; set; }
-        public virtual ICollection<LeaveApplication> LeaveApplications { get; set; }
-        public virtual Account Account { get; set; }
-
-
     }
 }

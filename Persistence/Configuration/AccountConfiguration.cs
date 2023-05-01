@@ -13,9 +13,6 @@ namespace Persistence.Configuration
             builder.Property(a => a.Email).IsRequired();
             builder.Property(a => a.Password).IsRequired();
 
-            builder.HasOne(a => a.Employee)
-                   .WithOne(e => e.Account)
-                   .HasForeignKey<Employee>(e => e.Id).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

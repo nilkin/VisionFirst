@@ -1,8 +1,13 @@
-﻿namespace Domain.Enums
+﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
+
+namespace Domain.Enums
 {
-    public enum Role
+    public enum Role:byte
     {
-        Admin,
+        [Display(Name = "Admin")]
+        Admin = 1,
+        [Display(Name = "User")]
         User
     }
 

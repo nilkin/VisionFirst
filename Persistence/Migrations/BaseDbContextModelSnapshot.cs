@@ -41,10 +41,13 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
+                    b.Property<byte>("Role")
+                        .HasColumnType("tinyint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId")
+                        .IsUnique();
 
                     b.ToTable("Accounts");
                 });
@@ -60,7 +63,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("DateOfEntry")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2023, 5, 1, 18, 22, 47, 961, DateTimeKind.Utc).AddTicks(9437));
+                        .HasDefaultValue(new DateTime(2023, 5, 1, 22, 29, 19, 264, DateTimeKind.Utc).AddTicks(6158));
 
                     b.Property<string>("FullName")
                         .IsRequired()
@@ -89,7 +92,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("DateOfEntry")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2023, 5, 1, 18, 22, 47, 962, DateTimeKind.Utc).AddTicks(2414));
+                        .HasDefaultValue(new DateTime(2023, 5, 1, 22, 29, 19, 264, DateTimeKind.Utc).AddTicks(9336));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -120,7 +123,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("DateOfEntry")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2023, 5, 1, 18, 22, 47, 962, DateTimeKind.Utc).AddTicks(5220));
+                        .HasDefaultValue(new DateTime(2023, 5, 1, 22, 29, 19, 265, DateTimeKind.Utc).AddTicks(2791));
 
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
@@ -153,8 +156,8 @@ namespace Persistence.Migrations
 
                     b.Property<DateTime>("EntryDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 5, 1, 18, 22, 47, 962, DateTimeKind.Utc).AddTicks(7710));
+                        .HasColumnType("datetime")
+                        .HasDefaultValue(new DateTime(2023, 5, 1, 22, 29, 19, 265, DateTimeKind.Utc).AddTicks(5323));
 
                     b.Property<string>("Note")
                         .IsRequired()
@@ -185,7 +188,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("DateOfEntry")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2023, 5, 1, 18, 22, 47, 962, DateTimeKind.Utc).AddTicks(9299));
+                        .HasDefaultValue(new DateTime(2023, 5, 1, 22, 29, 19, 265, DateTimeKind.Utc).AddTicks(7007));
 
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
@@ -201,21 +204,24 @@ namespace Persistence.Migrations
                     b.ToTable("Positions");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Employee", b =>
+            modelBuilder.Entity("Domain.Entities.Account", b =>
                 {
-                    b.HasOne("Domain.Entities.Account", "Account")
-                        .WithOne("Employee")
-                        .HasForeignKey("Domain.Entities.Employee", "Id")
+                    b.HasOne("Domain.Entities.Employee", "Employee")
+                        .WithOne("Account")
+                        .HasForeignKey("Domain.Entities.Account", "EmployeeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Employee", b =>
+                {
                     b.HasOne("Domain.Entities.Position", "Position")
                         .WithMany("Employees")
                         .HasForeignKey("PositionId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Account");
 
                     b.Navigation("Position");
                 });
@@ -253,12 +259,6 @@ namespace Persistence.Migrations
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Account", b =>
-                {
-                    b.Navigation("Employee")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Domain.Entities.Department", b =>
                 {
                     b.Navigation("Positions");
@@ -266,6 +266,9 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Employee", b =>
                 {
+                    b.Navigation("Account")
+                        .IsRequired();
+
                     b.Navigation("LeaveApplications");
                 });
 

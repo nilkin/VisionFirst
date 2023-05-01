@@ -14,7 +14,7 @@ namespace Persistence.Configuration
             builder.Property(a => a.NumberOfDays).IsRequired();
             builder.Property(a => a.PositionId).IsRequired();
 
-            builder.Property(a => a.EntryDate).HasColumnType("datetime2").HasDefaultValue(DateTime.UtcNow);
+            builder.Property(a => a.EntryDate).HasColumnType("datetime").HasDefaultValue(DateTime.UtcNow);
 
         }
     }

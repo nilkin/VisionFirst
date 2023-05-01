@@ -1,4 +1,4 @@
-﻿@model LeaveDayDetailDto
+﻿@model EmployeeDetailDto
 
 @{
     ViewData["Title"] = "Details";
@@ -8,21 +8,27 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label class="control-label">Qeyd</label>
-                <input disabled="disabled" asp-for="Note" class="form-control" />
-                <span asp-validation-for="Note" class="text-danger"></span>
+                <label class="control-label">Ad</label>
+                <input disabled="disabled" asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label class="control-label">Gün Sayı</label>
-                <input  disabled="disabled" asp-for="NumberOfDays" class="form-control" />
-                <span asp-validation-for="NumberOfDays" class="text-danger"></span>
+                <label class="control-label">Soyad</label>
+                <input disabled="disabled" asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Yaranma Tarixi</label>
+                <input disabled="disabled" type="date" asp-for="DateOfEntry" class="form-control" value="@DateTime.Today.ToString("dd/MM/yyyy")">
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label class="control-label">Vəzifə</label>
+                <label class="control-label">Şöbə</label>
                 <select disabled="disabled" asp-for="PositionId" class="form-control">
                     <option value="" disabled selected hidden>Seçim edin</option>
                     @foreach (var item in Model.Positions)
@@ -30,6 +36,7 @@
                         <option value="@item.Id">@item.Title</option>
                     }
                 </select>
+                <span asp-validation-for="PositionId" class="text-danger"></span>
             </div>
         </div>
         <div class="col-md-6 mt-4">
@@ -51,7 +58,7 @@
                 <div class="col-md-4 ">
                     <div class="form-group">
                         <div class="form-group">
-                            <a asp-controller="LeaveDay" asp-action="List" class="btn btn-outline-warning">Siyahı</a>
+                            <a asp-controller="Employee" asp-action="List" class="btn btn-outline-warning">Siyahı</a>
                         </div>
                     </div>
                 </div>

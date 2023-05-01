@@ -17,7 +17,9 @@ namespace Persistence.Configuration
             builder.HasOne(e => e.Position)
                    .WithMany(p => p.Employees)
                    .HasForeignKey(e => e.PositionId).OnDelete(DeleteBehavior.Restrict);
-
+            builder.HasOne(a => a.Account)
+                   .WithOne(e => e.Employee)
+                   .HasForeignKey<Account>(e => e.EmployeeId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
