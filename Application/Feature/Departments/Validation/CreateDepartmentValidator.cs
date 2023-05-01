@@ -9,8 +9,8 @@ namespace Application.Feature.Departments.Validation
     {
         public CreateDepartmentValidator()
         {
-            RuleFor(I => I.ShortName).NotNull().WithMessage(DepatmentMessages.ShortNameNotBeNull);
-            RuleFor(I => I.FullName).NotNull().WithMessage(DepatmentMessages.FullNameNotBeNull);
+            RuleFor(I => I.ShortName).NotNull().WithMessage(DepartmentMessages.ShortNameNotBeNull);
+            RuleFor(I => I.FullName).NotNull().WithMessage(DepartmentMessages.FullNameNotBeNull);
         }
     }
 }

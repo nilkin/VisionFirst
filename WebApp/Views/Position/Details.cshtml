@@ -1,0 +1,82 @@
+﻿@model PositionDetailDto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<form asp-action="Details" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Ad</label>
+                <input disabled="disabled" asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Şöbə</label>
+                <select disabled="disabled" asp-for="DepartmentId" class="form-control">
+                    <option value="" disabled selected hidden>Seçim edin</option>
+                    @foreach (var item in Model.Departments)
+                    {
+                        <option value="@item.Id">@item.FullName</option>
+                    }
+
+                </select>
+
+            </div>
+        </div>
+        <div class="col-md-6 mt-4">
+            <div class="row">
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <a href="#" id="active" class="btn btn-outline-primary ">Aktiv et</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <button id="update" type="submit" class="btn btn-outline-success d-none">Təsdiq</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <a asp-controller="Position" asp-action="List" class="btn btn-outline-warning">Siyahı</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        <script src="~/lib/ckeditor/ckeditor.js"></script>
+        <script>
+            $(document).ready(function () {
+
+                $('#active').on('click', function () {
+                    if ($("#update").hasClass("d-none")) {
+                        $("#update").removeClass("d-none");
+                        $('input,select').prop('disabled', false);
+
+                    }
+                    else {
+                        $("#update").addClass("d-none");
+                        $('input,select').prop('disabled', true);
+
+                    }
+
+                });
+
+            });
+        </script>
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

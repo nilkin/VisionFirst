@@ -15,6 +15,7 @@ namespace Persistence
             opt.UseSqlServer(configuration.GetConnectionString("ProjectConnectionString")));
 
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IPositionRepository, PositionRepository>();
 
             return services;
         }

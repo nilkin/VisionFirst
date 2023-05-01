@@ -2,9 +2,7 @@
 using Application.Feature.Departments.Dtos;
 using Application.Feature.Departments.Queries;
 using Application.Tools;
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using System.Drawing.Printing;
 
 namespace WebApp.Controllers
 {

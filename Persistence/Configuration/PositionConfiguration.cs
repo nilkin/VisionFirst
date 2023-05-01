@@ -10,6 +10,10 @@ namespace Persistence.Configuration
         {
             builder.HasKey(k => k.Id);
             builder.Property(a => a.Id).UseIdentityColumn();
+            builder.Property(a => a.Title).IsRequired();
+            builder.Property(a => a.DepartmentId).IsRequired();
+
+            builder.Property(a => a.DateOfEntry).HasColumnType("datetime").HasDefaultValue(DateTime.UtcNow);
 
             builder.HasOne(p => p.LeaveDay)
                     .WithOne(ld => ld.Position)

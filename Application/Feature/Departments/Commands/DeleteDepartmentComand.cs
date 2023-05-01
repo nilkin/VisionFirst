@@ -28,7 +28,7 @@ namespace Application.Feature.Departments.Commands
                 if (delete is not null)
                     await _departmentRepository.DeleteAsync(delete);
 
-                return DepatmentMessages.Deleted;
+                return DepartmentMessages.Deleted;
             }
         }
     }
