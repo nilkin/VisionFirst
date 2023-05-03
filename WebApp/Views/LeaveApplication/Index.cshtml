@@ -1,0 +1,70 @@
+﻿@using Domain.Enums;
+@model Pagination<LeaveApplicationListDto>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#Id </th>
+                    <th scope="col">Məzuniyyət Müddəti</th>
+                    <th scope="col">Yaranma Tarixi</th>
+                    <th scope="col">Başlama Tarixi</th>
+                    <th scope="col">Əməkdaş</th>
+                    <th scope="col">Vəzifə</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <th scope="row">
+                            # @item.Id
+                        </th>
+                        <td>@item.LeaveDuration </td>
+                        <td>@item.DateOfEntry.ToString("dd/MM/yyyy")</td>
+                        <td>@item.LeaveStartTime.ToString("dd/MM/yyyy")</td>
+                        <td>@item.Employee?.Name  @item.Employee?.Surname</td>
+                        <td>@item.Employee?.Position?.Title / @item.Employee?.Position?.Department?.ShortName </td>
+                        @switch (item.Status)
+                        {
+                            case LeaveStatus.Pending:
+                                <td><span class="badge badge-info">@LeaveStatus.Pending.GetDisplayName()</span></td>
+                                break;
+                            case LeaveStatus.Approved:
+                                <td><span class="badge badge-success">@LeaveStatus.Approved.GetDisplayName()</span></td>
+                                break;
+                            case LeaveStatus.Rejected:
+                                <td><span class="badge badge-danger">@LeaveStatus.Rejected.GetDisplayName()</span></td>
+                                break;
+                        }
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a type="button" asp-controller="LeaveApplication" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-success">Ətraflı</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+    <div class="col-md-12">
+
+        <div style="padding-top:20px">
+            @Model.GetPagenation(Url,"List")
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/lib/_common.js"></script>
+}

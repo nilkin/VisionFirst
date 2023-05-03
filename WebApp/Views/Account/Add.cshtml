@@ -1,0 +1,73 @@
+﻿@using Domain.Enums;
+@model AccountAddDto
+
+<form asp-action="Add" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Email</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Şifrə</label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="floatLabel">  Rol </label>
+                <select asp-for="Role" class="form-control">
+                    <option value="" selected>Hamısı</option>
+                    @foreach (Role type in @Enum.GetValues(typeof(Role)))
+                    {
+                        <option value="@type">@type.ToString()</option>
+                    }
+
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Əməkdaş</label>
+                <select asp-for="EmployeeId" class="form-control">
+                    <option value="" disabled selected hidden>Seçim edin</option>
+                    @foreach (var item in Model.Employees)
+                    {
+                        <option value="@item.Id">@item.Name @item.Surname </option>
+                    }
+                </select>
+                <span asp-validation-for="EmployeeId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6 mt-4">
+            <div class="row">
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <a asp-controller="Account" asp-action="List" class="btn btn-outline-warning">Siyahı</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline-primary">Təsdiq</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+@section Scripts {
+    @{
+        <script src="~/lib/ckeditor/ckeditor.js"></script>
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

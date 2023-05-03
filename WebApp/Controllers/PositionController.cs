@@ -3,12 +3,14 @@ using Application.Feature.Positions.Commands;
 using Application.Feature.Positions.Dtos;
 using Application.Feature.Positions.Queries;
 using Application.Tools;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers
 {
     public class PositionController : BaseController
     {
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Add()
         {
@@ -16,6 +18,7 @@ namespace WebApp.Controllers
             model.Departments = await Mediator.Send(new GetListDepartmentQuery());
             return View(model);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Add(PositionAddDto model)
         {
@@ -37,7 +40,7 @@ namespace WebApp.Controllers
             result.Departments = await Mediator.Send(new GetListDepartmentQuery());
             return View(result);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Details(PositionDetailDto model)
         {
@@ -50,6 +53,7 @@ namespace WebApp.Controllers
             return View(nameof(Details), result);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> List(int pageIndex = 1, int pageSize = 10)
         {
@@ -57,6 +61,7 @@ namespace WebApp.Controllers
             var pageModel = new Pagination<PositionListDto>(result, pageIndex, pageSize);
             return View(pageModel);
         }
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {

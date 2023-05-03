@@ -1,0 +1,49 @@
+﻿@using Domain.Enums;
+@model LeaveApplicationAddDto
+
+<form asp-action="Add" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Məzuniyyət Müddəti</label>
+                <input asp-for="LeaveDuration" class="form-control" />
+                <span asp-validation-for="LeaveDuration" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Başlama Tarixi</label>
+                <input type="date" asp-for="LeaveStartTime" class="form-control" value="@DateTime.Today.ToString("dd/MM/yyyy")">
+            </div>
+        </div>
+        <div class="col-md-6 mt-4">
+            <div class="row">
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <div class="col-md-4 ">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <a asp-controller="LeaveApplication" asp-action="List" class="btn btn-outline-warning">Siyahı</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline-primary">Təsdiq</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+@section Scripts {
+    @{
+        <script src="~/lib/ckeditor/ckeditor.js"></script>
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

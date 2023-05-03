@@ -1,0 +1,97 @@
+﻿@using Domain.Enums;
+@model AccountDetailDto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<form asp-action="Details" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Email</label>
+                <input disabled="disabled" asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Şifrə</label>
+                <input disabled="disabled" asp-for="NewPassword" class="form-control" />
+                <span asp-validation-for="NewPassword" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="floatLabel">  Rol </label>
+                <select disabled="disabled" asp-for="Role" class="form-control">
+                    <option value="" selected>Hamısı</option>
+                    @foreach (Role type in @Enum.GetValues(typeof(Role)))
+                    {
+                        <option value="@type">@type.ToString()</option>
+                    }
+
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label">Əməkdaş</label>
+                <select disabled="disabled" asp-for="EmployeeId" class="form-control">
+                    <option value="" disabled selected hidden>Seçim edin</option>
+                    @foreach (var item in Model.Employees)
+                    {
+                        <option value="@item.Id">@item.Name @item.Surname </option>
+                    }
+                </select>
+                <span asp-validation-for="EmployeeId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6 mt-4">
+            <div class="row">
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <a href="#" id="active" class="btn btn-outline-primary ">Aktiv et</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <button id="update" type="submit" class="btn btn-outline-success d-none">Təsdiq</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <a asp-controller="Account" asp-action="List" class="btn btn-outline-warning">Siyahı</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        <script>
+            $(document).ready(function () {
+
+                $('#active').on('click', function () {
+                    if ($("#update").hasClass("d-none")) {
+                        $("#update").removeClass("d-none");
+                        $('input,select').prop('disabled', false);
+                    }
+                    else {
+                        $("#update").addClass("d-none");
+                        $('input,select').prop('disabled', true);
+                    }
+                });
+            });
+        </script>
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

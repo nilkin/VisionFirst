@@ -4,9 +4,9 @@ using FluentValidation;
 
 namespace Application.Feature.Positions.Validation
 {
-    public class UpdatePositiontValidator : AbstractValidator<PositionDetailDto>
+    public class CreatePositionValidator : AbstractValidator<PositionAddDto>
     {
-        public UpdatePositiontValidator()
+        public CreatePositionValidator()
         {
             RuleFor(I => I.Title).NotNull().WithMessage(PositionMessages.TitleNotBeNull);
             RuleFor(I => I.DepartmentId).NotNull().WithMessage(PositionMessages.DepartmentNotBeNull);

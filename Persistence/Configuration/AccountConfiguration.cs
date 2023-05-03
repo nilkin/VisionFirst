@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -12,6 +13,7 @@ namespace Persistence.Configuration
             builder.Property(a => a.Id).UseIdentityColumn();
             builder.Property(a => a.Email).IsRequired();
             builder.Property(a => a.Password).IsRequired();
+            builder.Property(a => a.Role).HasDefaultValue(Role.User);
 
         }
     }

@@ -42,7 +42,9 @@ namespace Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("Role")
-                        .HasColumnType("tinyint");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint")
+                        .HasDefaultValue((byte)2);
 
                     b.HasKey("Id");
 
@@ -63,7 +65,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("DateOfEntry")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2023, 5, 1, 22, 29, 19, 264, DateTimeKind.Utc).AddTicks(6158));
+                        .HasDefaultValue(new DateTime(2023, 5, 2, 8, 48, 27, 934, DateTimeKind.Utc).AddTicks(8224));
 
                     b.Property<string>("FullName")
                         .IsRequired()
@@ -92,7 +94,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("DateOfEntry")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2023, 5, 1, 22, 29, 19, 264, DateTimeKind.Utc).AddTicks(9336));
+                        .HasDefaultValue(new DateTime(2023, 5, 2, 8, 48, 27, 935, DateTimeKind.Utc).AddTicks(947));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -123,7 +125,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("DateOfEntry")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2023, 5, 1, 22, 29, 19, 265, DateTimeKind.Utc).AddTicks(2791));
+                        .HasDefaultValue(new DateTime(2023, 5, 2, 8, 48, 27, 935, DateTimeKind.Utc).AddTicks(4292));
 
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
@@ -157,7 +159,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("EntryDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2023, 5, 1, 22, 29, 19, 265, DateTimeKind.Utc).AddTicks(5323));
+                        .HasDefaultValue(new DateTime(2023, 5, 2, 8, 48, 27, 935, DateTimeKind.Utc).AddTicks(6709));
 
                     b.Property<string>("Note")
                         .IsRequired()
@@ -188,7 +190,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("DateOfEntry")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2023, 5, 1, 22, 29, 19, 265, DateTimeKind.Utc).AddTicks(7007));
+                        .HasDefaultValue(new DateTime(2023, 5, 2, 8, 48, 27, 935, DateTimeKind.Utc).AddTicks(8370));
 
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");

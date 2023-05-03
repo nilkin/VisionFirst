@@ -3,6 +3,7 @@ using Application.Services.Source;
 using AutoMapper;
 using MediatR;
 using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Feature.Employees.Queries
 {
@@ -22,7 +23,7 @@ namespace Application.Feature.Employees.Queries
 
             public async Task<EmployeeDetailDto> Handle(GetEmployeeQuery request, CancellationToken cancellationToken)
             {
-                Employee? Employee = await _EmployeeRepository.GetAsync(x => x.Id == request.Id);
+                Employee? Employee = await _EmployeeRepository.GetAsync(x => x.Id == request.Id,x=>x.Include(x=>x.Position));
                 var model = _mapper.Map<EmployeeDetailDto>(Employee);
                 return model;
             }

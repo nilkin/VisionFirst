@@ -4,11 +4,13 @@ using Application.Feature.LeaveDays.Dtos;
 using Application.Feature.LeaveDays.Queries;
 using Application.Tools;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApp.Controllers
 {
     public class LeaveDayController : BaseController
     {
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Add()
         {
@@ -16,6 +18,7 @@ namespace WebApp.Controllers
             model.Positions = await Mediator.Send(new GetListPositionQuery());
             return View(model);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Add(LeaveDayAddDto model)
         {
@@ -37,7 +40,7 @@ namespace WebApp.Controllers
             result.Positions = await Mediator.Send(new GetListPositionQuery());
             return View(result);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Details(LeaveDayDetailDto model)
         {
@@ -50,6 +53,7 @@ namespace WebApp.Controllers
             return View(nameof(Details), result);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> List(int pageIndex = 1, int pageSize = 10)
         {
@@ -57,6 +61,7 @@ namespace WebApp.Controllers
             var pageModel = new Pagination<LeaveDayListDto>(result, pageIndex, pageSize);
             return View(pageModel);
         }
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {

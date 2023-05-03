@@ -2,18 +2,20 @@
 using Application.Feature.Departments.Dtos;
 using Application.Feature.Departments.Queries;
 using Application.Tools;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers
 {
     public class DepartmentController : BaseController
     {
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Add()
         {
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Add(DepartmentAddDto model)
         {
@@ -28,13 +30,13 @@ namespace WebApp.Controllers
             }
             return View(model);
         }
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int id)
         {
             DepartmentDetailDto result = await Mediator.Send(new GetDepartmentQuery { Id = id });
             return View(result);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Details(DepartmentDetailDto model)
         {
@@ -45,7 +47,7 @@ namespace WebApp.Controllers
             DepartmentDetailDto result = await Mediator.Send(updateDepartmentCommand);
             return View(nameof(Details));
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> List(int pageIndex = 1, int pageSize = 10)
         {
@@ -53,7 +55,7 @@ namespace WebApp.Controllers
             var pageModel = new Pagination<DepartmentListDto>(result, pageIndex, pageSize);
             return View(pageModel);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {

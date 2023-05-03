@@ -23,7 +23,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Yaranma Tarixi</label>
-                <input disabled="disabled" type="date" asp-for="DateOfEntry" class="form-control" value="@DateTime.Today.ToString("dd/MM/yyyy")">
+                <input disabled="disabled" type="date" asp-for="DateOfEntry" class="form-control">
             </div>
         </div>
         <div class="col-sm-6">
@@ -55,13 +55,15 @@
                         </div>
                     </div>
                 </div>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin")){
                 <div class="col-md-4 ">
                     <div class="form-group">
                         <div class="form-group">
                             <a asp-controller="Employee" asp-action="List" class="btn btn-outline-warning">Siyahı</a>
                         </div>
                     </div>
-                </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
