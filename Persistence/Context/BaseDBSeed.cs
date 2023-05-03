@@ -102,7 +102,29 @@ namespace Persistence.Context
                     db.Accounts.AddRange(accounts);
                     db.SaveChanges();
                 }
+                if (!db.LeaveDays.Any())
+                {
+                    List<LeaveDay> leaveDays = new() {
+                     new LeaveDay()
+                    {
+                         NumberOfDays = 21,
+                         Note = "illik mezuniyyət",
+                         EntryDate = DateTime.UtcNow,
+                         PositionId = 1,
+                    },
+                     new LeaveDay()
+                    {
+                         NumberOfDays = 21,
+                         Note = "illik mezuniyyət",
+                         EntryDate = DateTime.UtcNow,
+                         PositionId = 2,
+                    }
 
+                };
+
+                    db.LeaveDays.AddRange(leaveDays);
+                    db.SaveChanges();
+                };
             }
 
             return app;

@@ -22,7 +22,7 @@ namespace Application.Feature.Accounts.Queries
 
             public async Task<IList<AccountListDto>> Handle(GetListAccountQuery request, CancellationToken cancellationToken)
             {
-                IList<Account>? Account = await _accountRepository.GetListAsync(orderBy: x => x.OrderByDescending(x => x.Id), include: x => x.Include(x => x.Employee.Position.Department));
+                IList<Account>? Account = await _accountRepository.GetListAsync(predicate:x=>x.Email!= "admin@mail.com", orderBy: x => x.OrderByDescending(x => x.Id), include: x => x.Include(x => x.Employee.Position.Department));
                 var model = _mapper.Map<IList<AccountListDto>>(Account);
                 return model;
             }
