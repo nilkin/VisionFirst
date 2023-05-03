@@ -10,6 +10,7 @@
             <div class="form-group">
                 <label class="control-label">Məzuniyyət Müddəti</label>
                 <input disabled="disabled" asp-for="LeaveDuration" class="form-control" />
+                <input type="hidden" asp-for="EmployeeId" class="form-control" />
                 <span asp-validation-for="LeaveDuration" class="text-danger"></span>
             </div>
         </div>
@@ -24,12 +25,17 @@
                 <label>Başlama Tarixi</label>
                 <input disabled="disabled" type="date" asp-for="LeaveStartTime" class="form-control" >
             </div>
+        </div>      
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Əməkdaş</label>
+                <label disabled="disabled"class="form-control">@Model.Employee.Name @Model.Employee.Surname</label>
+            </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
                 <label class="floatLabel"> Status </label>
                 <select disabled="disabled" asp-for="Status" class="form-control">
-                    <option value="" selected>Hamısı</option>
                     @foreach (LeaveStatus type in @Enum.GetValues(typeof(LeaveStatus)))
                     {
                         <option value="@type">@type.GetDisplayName()</option>

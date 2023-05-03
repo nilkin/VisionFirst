@@ -4,7 +4,7 @@ namespace Domain.Enums
 {
     public enum LeaveStatus : byte
     {
-        [Display(Name = "Gəzləmədədir")]
+        [Display(Name = "Gözləmədədir")]
         Pending = 1,
         [Display(Name = "Təsdiq edildi")]
         Approved,

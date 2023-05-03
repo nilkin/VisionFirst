@@ -29,7 +29,11 @@ namespace Application
                 opt.MinimumSameSitePolicy = SameSiteMode.None;
 
             });
-
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin", policy =>
+                    policy.RequireRole("Admin"));
+            });
             return services;
 
         }

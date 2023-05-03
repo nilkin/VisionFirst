@@ -1,24 +1,24 @@
 ﻿using Domain.Entities;
 using Domain.Enums;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Persistence.Context
 {
     public static class BaseDBSeed
-    {
+    {       
         static public IApplicationBuilder SeedClient(this IApplicationBuilder app)
         {
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<BaseDbContext>();
-
+                db.Database.Migrate();
                 if (!db.Departments.Any())
                 {
                     List<Department> departments = new() {
                      new Department()
                     {
-                         Id = 1,
                          ShortName = "Hr",
                          FullName = "Human Resourse",
                          DateOfEntry = DateTime.UtcNow,
@@ -26,7 +26,6 @@ namespace Persistence.Context
                     },
                         new Department()
                     {
-                         Id = 2,
                          ShortName = "IT",
                          FullName = "Information Technology",
                          DateOfEntry = DateTime.UtcNow,
@@ -43,14 +42,12 @@ namespace Persistence.Context
                     List<Position> positions = new() {
                      new Position()
                     {
-                         Id = 1,
                          Title = "Admin",
                          DateOfEntry = DateTime.UtcNow,
                          DepartmentId = 1,
                     },
                      new Position()
                     {
-                         Id = 2,
                          Title = "User",
                          DateOfEntry = DateTime.UtcNow,
                          DepartmentId = 2,
@@ -66,7 +63,6 @@ namespace Persistence.Context
                     List<Employee> employees = new () {
                      new Employee()
                     {
-                         Id = 1,
                          Name = "Admin",
                          Surname = "Admin",
                          DateOfEntry = DateTime.UtcNow,
@@ -74,7 +70,6 @@ namespace Persistence.Context
                     },
                      new Employee()
                     {
-                         Id = 2,
                          Name = "User",
                          Surname = "User",
                          DateOfEntry = DateTime.UtcNow,
@@ -91,7 +86,6 @@ namespace Persistence.Context
                     List<Account> accounts = new () {
                         new Account()
                     {
-                        Id = 1,
                         Email = "admin@mail.com",
                         Password = "N78Z3UquX7wa6/CasJcz+cZki995N4TjpHWSIrNAUw+nbueH9YPF6csMruDaIEPB",// 123
                         Role = Role.Admin,
@@ -99,7 +93,6 @@ namespace Persistence.Context
                     },
                         new Account()
                     {
-                        Id = 2,
                         Email =  "user@mail.com",
                         Password = "N78Z3UquX7wa6/CasJcz+cZki995N4TjpHWSIrNAUw+nbueH9YPF6csMruDaIEPB",// 123
                         Role = Role.User,

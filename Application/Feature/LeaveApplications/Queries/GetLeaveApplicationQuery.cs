@@ -3,6 +3,7 @@ using Application.Services.Source;
 using AutoMapper;
 using MediatR;
 using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Feature.LeaveApplications.Queries
 {
@@ -22,7 +23,7 @@ namespace Application.Feature.LeaveApplications.Queries
 
             public async Task<LeaveApplicationDetailDto> Handle(GetLeaveApplicationQuery request, CancellationToken cancellationToken)
             {
-                LeaveApplication? LeaveApplication = await _LeaveApplicationRepository.GetAsync(x => x.Id == request.Id);
+                LeaveApplication? LeaveApplication = await _LeaveApplicationRepository.GetAsync(x => x.Id == request.Id, include: x => x.Include(x => x.Employee));
                 var model = _mapper.Map<LeaveApplicationDetailDto>(LeaveApplication);
                 return model;
             }

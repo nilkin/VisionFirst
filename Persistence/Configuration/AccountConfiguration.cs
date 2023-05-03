@@ -11,7 +11,7 @@ namespace Persistence.Configuration
         {
             builder.HasKey(k => k.Id);
             builder.Property(a => a.Id).UseIdentityColumn();
-            builder.Property(a => a.Email).IsRequired();
+            builder.Property(a => a.Email);
             builder.Property(a => a.Password).IsRequired();
             builder.Property(a => a.Role).HasDefaultValue(Role.User);
 

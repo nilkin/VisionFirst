@@ -35,13 +35,13 @@
                         @switch (item.Status)
                         {
                             case LeaveStatus.Pending:
-                                <td><span class="badge badge-info">@LeaveStatus.Pending.GetDisplayName()</span></td>
+                                <td><span class="badge text-primary">@LeaveStatus.Pending.GetDisplayName()</span></td>
                                 break;
                             case LeaveStatus.Approved:
-                                <td><span class="badge badge-success">@LeaveStatus.Approved.GetDisplayName()</span></td>
+                                <td><span class="badge text-success">@LeaveStatus.Approved.GetDisplayName()</span></td>
                                 break;
                             case LeaveStatus.Rejected:
-                                <td><span class="badge badge-danger">@LeaveStatus.Rejected.GetDisplayName()</span></td>
+                                <td><span class="badge text-danger">@LeaveStatus.Rejected.GetDisplayName()</span></td>
                                 break;
                         }
                         <td>

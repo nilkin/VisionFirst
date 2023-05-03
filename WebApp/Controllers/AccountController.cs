@@ -40,7 +40,7 @@ namespace WebApp.Controllers
                 {
                          new Claim(ClaimTypes.NameIdentifier, result.Id.ToString()),
                          new Claim(ClaimTypes.Email, result.Email),
-                         new Claim(ClaimTypes.Role ,Role.User.ToString())
+                         new Claim(ClaimTypes.Role ,Role.Admin.ToString())
                     }, CookieAuthenticationDefaults.AuthenticationScheme);
                     isAuthenticate = true;
                 }
@@ -61,7 +61,7 @@ namespace WebApp.Controllers
                     if (result.Role == Role.Admin)
                     {
                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                        return RedirectToAction("list", "LeaveApplication");
+                        return RedirectToAction("List", "LeaveApplication");
                     }
                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 

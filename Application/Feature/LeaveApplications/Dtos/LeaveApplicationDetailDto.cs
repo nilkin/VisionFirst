@@ -11,7 +11,7 @@ namespace Application.Feature.LeaveApplications.Dtos
         public DateTime? LeaveStartTime { get; set; }
         public int? LeaveDuration { get; set; }
 
-        public int? EmployeeId { get; set; }
-        public Employee? Employee { get; set; }
+        public int EmployeeId { get; set; }
+        public Employee Employee { get; set; }
     }
 }

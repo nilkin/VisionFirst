@@ -63,6 +63,7 @@
                 $('#active').on('click', function () {
                     if ($("#update").hasClass("d-none")) {
                         $("#update").removeClass("d-none");
+                        $('input,select').prop('disabled', false);
                     }
                     else {
                         $("#update").addClass("d-none");
