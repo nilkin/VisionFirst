@@ -4,6 +4,8 @@
     {
         public static string ShortNameNotBeNull = "Qısa adlandırma boş ola bilməz";
         public static string FullNameNotBeNull = "Tam adlandırma boş ola bilməz";
+        public static string NotFound = "Şöbə tapılmadı";
         public static string Deleted = "Şöbə uğurla silindi";
+
     }
 }

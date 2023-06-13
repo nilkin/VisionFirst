@@ -26,9 +26,16 @@ namespace Application.Feature.Departments.Commands
             {
                 Department? delete = await _departmentRepository.GetAsync(x => x.Id == request.Id);
                 if (delete is not null)
+                {
                     await _departmentRepository.DeleteAsync(delete);
+                    return DepartmentMessages.Deleted;
+                }
+                else
+                {
+                return DepartmentMessages.NotFound;
 
-                return DepartmentMessages.Deleted;
+                }
+
             }
         }
     }
