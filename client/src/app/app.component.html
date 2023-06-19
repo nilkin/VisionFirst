@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1>{{title}}</h1>
+        <table class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#Id </th>
+              <th scope="col">Qısa Ad</th>
+              <th scope="col">Tam Ad</th>
+              <th scope="col">Qeyd</th>
+              <th scope="col">Yaranma Tarixi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of department">
+              <td>{{ item.id }}</td>
+              <td>{{ item.shortName }}</td>
+              <td>{{ item.fullName }}</td>    
+              <td>
+                <span [innerHTML]="item.record"></span>
+              </td>    
+              <td>{{ item.dateOfEntry }}</td>
+            </tr>
+          </tbody>
+        </table>
+             
+      </div>
+    </div>
+  </div>
+</body>
+</html>
