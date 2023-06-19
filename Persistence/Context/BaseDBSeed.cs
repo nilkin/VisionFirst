@@ -87,14 +87,14 @@ namespace Persistence.Context
                         new Account()
                     {
                         Email = "admin@mail.com",
-                        Password = "N78Z3UquX7wa6/CasJcz+cZki995N4TjpHWSIrNAUw+nbueH9YPF6csMruDaIEPB",// 123
+                        Password = "0Ud5FlIqmSb9fdhPCKI/Bkm/Vji1lM/JETgfMX7LrJ3nYs9lMi2/9XBWoJ3U4wjy",// 123
                         Role = Role.Admin,
                         EmployeeId = 1
                     },
                         new Account()
                     {
                         Email =  "user@mail.com",
-                        Password = "N78Z3UquX7wa6/CasJcz+cZki995N4TjpHWSIrNAUw+nbueH9YPF6csMruDaIEPB",// 123
+                        Password = "0Ud5FlIqmSb9fdhPCKI/Bkm/Vji1lM/JETgfMX7LrJ3nYs9lMi2/9XBWoJ3U4wjy",// 123
                         Role = Role.User,
                         EmployeeId = 2
                     }

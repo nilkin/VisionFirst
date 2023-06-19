@@ -102,8 +102,8 @@ namespace WebApp.Controllers
                 {
                     AccountAddDto = model
                 };
-                int result = await Mediator.Send(createAccountCommand);
-                return RedirectToAction(nameof(Details), new { id = result });
+                var result = await Mediator.Send(createAccountCommand);
+                return RedirectToAction(nameof(Details), new { id = result.Id });
             }
             return View(model);
         }

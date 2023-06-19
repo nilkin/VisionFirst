@@ -30,19 +30,12 @@ namespace Application.Feature.Accounts.Commands
                 {
                     bool result = PasswordGeneratorExtension.VerifyPassword(request.AccountLoginDto.Password, acc.Password);
                     if (result)
-                    {
                         return _mapper.Map<AccountDetailDto>(acc);
-                    }
                     else
-                    {
                         return _mapper.Map<AccountDetailDto>(request.AccountLoginDto);
-                    }
                 }
                 else
-                {
-
                     return _mapper.Map<AccountDetailDto>(request.AccountLoginDto);
-                }
             }
         }
     }

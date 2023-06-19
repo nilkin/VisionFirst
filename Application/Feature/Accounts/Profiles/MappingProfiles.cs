@@ -17,6 +17,7 @@ namespace Application.Feature.Accounts.Profiles
                 .ForMember(dest => dest.NewPassword, opt => opt.MapFrom(src => string.Empty));
             CreateMap<Account, AccountListDto>().ReverseMap();
             CreateMap<Account, AccountLoginDto>().ReverseMap();
+            CreateMap<Account, AccountRegisterDto>().ReverseMap();
             CreateMap<AccountDetailDto, AccountLoginDto>().ReverseMap();
         }
     }

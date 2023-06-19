@@ -1,4 +1,5 @@
 ﻿using Application.Services.Reference.AccountServise;
+using Application.Tools;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -21,6 +22,7 @@ namespace Application
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             services.AddScoped<IAccountServise, AccountManager>();
+            services.AddScoped<ITokenService, TokenService>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
             services.Configure<CookiePolicyOptions>(opt =>
