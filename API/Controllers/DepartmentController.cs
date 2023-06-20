@@ -1,6 +1,7 @@
 using Application.Feature.Departments.Commands;
 using Application.Feature.Departments.Dtos;
 using Application.Feature.Departments.Queries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -17,6 +18,7 @@ namespace API.Controllers
             int result = await Mediator.Send(createDepartmentCommand);
             return Created("", result);
         }
+        [Authorize]   
         [HttpGet("{Id}")]
         public async Task<IActionResult> Details([FromRoute] GetDepartmentQuery getDepartmentQuery)
         {

@@ -30,7 +30,7 @@ namespace Application
                 opt.CheckConsentNeeded = context => true;
                 opt.MinimumSameSitePolicy = SameSiteMode.None;
 
-            });
+			});
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Admin", policy =>
