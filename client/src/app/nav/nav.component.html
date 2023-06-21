@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">Vision First</a>
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Şöbə</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Vəzifə</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Məzuniyyət günü</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Əməkdaşlar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Hesablar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Məzuniyyət sorğuları</a>
+        </li>
+      </ul>
+
+      <section>
+        <div class="row"  *ngIf="loggedIn" dropdown>
+          <a mat-button color="warn" [matMenuTriggerFor]="menu">Xoş gəlmisiniz</a>
+          <mat-menu #menu="matMenu">
+            <a mat-button color="warn" class="dropdown-item" >Profil</a>
+            <a mat-button color="warn" class="dropdown-item" (click)="logout()">Çıxış</a>
+          </mat-menu>
+        </div>
+
+      </section>
+      <form
+      *ngIf="!loggedIn"
+        class="d-flex"
+        #loginform="ngForm"
+        (ngSubmit)="login()"
+        autocomplete="off"
+      >
+        <input
+          name="email"
+          [(ngModel)]="model.email"
+          class="form-control me-2"
+          type="text"
+          placeholder="Email"
+        />
+        <input
+          name="password"
+          [(ngModel)]="model.password"
+          class="form-control me-2"
+          type="password"
+          placeholder="Password"
+        />
+        <button type="submit" class="btn btn-outline-success">Login</button>
+      </form>
+    </div>
+  </div>
+</nav>

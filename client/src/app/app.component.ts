@@ -7,7 +7,6 @@ import { Component,OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Vision First';
   department:any;
 
   constructor(private http: HttpClient) {};
@@ -16,8 +15,7 @@ export class AppComponent implements OnInit {
       this.http.get("https://localhost:5001/api/department/list").subscribe(
         {
           next : response => this.department = response,
-          error: error => console.log(error),
-          complete: ()=>console.log("Complete")
+          error: error => console.log(error)
         }
       )
   }
