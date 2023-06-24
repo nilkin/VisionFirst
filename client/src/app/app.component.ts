@@ -4,6 +4,7 @@ import { IAccount } from './_models/account';
 import { environment } from './_environments/_environment';
 import { IDepartment } from './_models/department';
 import { DepartmentService } from './_services/department.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -23,15 +24,13 @@ export class AppComponent implements OnInit {
     this.setCurrentAccoun();
   }
   async getDepartments() {
-    (await this.departmentService.getDepartments()).subscribe(
-      (departments: IDepartment[]) => {
-        this.departments = departments;
-      },
-      (error: any) => {
-        console.error('Error retrieving departments:', error);
-      }
-    );
+    try {
+      this.departments = await lastValueFrom(await this.departmentService.getDepartments());
+    } catch (error) {
+      console.error('Error retrieving departments:', error);
+    }
   }
+  
 
   setCurrentAccoun() {
     const userString = localStorage.getItem('user');
