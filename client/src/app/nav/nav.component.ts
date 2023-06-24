@@ -21,17 +21,15 @@ export class NavComponent implements OnInit {
       error: (err) => console.log(err),
     });
   }
-  login() {
-    this.accountServise.login(this.model).subscribe({
-      next: (resp) => {
-        console.log(resp);
-        this.loggedIn = true;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+  async login() {
+    try {
+      await this.accountServise.login(this.model);
+      console.log('Login successful!');
+    } catch (error) {
+      console.error('Login error:', error);
+    }
   }
+  
 
   logout() {
     this.accountServise.logout();

@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './_services/account.service';
 import { IAccount } from './_models/account';
@@ -23,8 +22,8 @@ export class AppComponent implements OnInit {
     this.getDepartments();
     this.setCurrentAccoun();
   }
-  getDepartments() {
-    this.departmentService.getDepartments().subscribe(
+  async getDepartments() {
+    (await this.departmentService.getDepartments()).subscribe(
       (departments: IDepartment[]) => {
         this.departments = departments;
       },
@@ -38,6 +37,6 @@ export class AppComponent implements OnInit {
     const userString = localStorage.getItem('user');
     if (!userString) return;
     const user: IAccount = JSON.parse(userString);
-    this.accountService.setcurrentAccount(user);
+    this.accountService.setCurrentAccount(user);
   }
 }
