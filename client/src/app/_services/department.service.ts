@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../_environments/_environment';
 import { IDepartment } from '../_models/department';
 import { map } from 'rxjs/internal/operators/map';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,22 +11,18 @@ import { map } from 'rxjs/internal/operators/map';
 export class DepartmentService {
   baseUrl: string = environment.baseUrl;
   departments:IDepartment[]| any;
+  private currentDepartSource = new BehaviorSubject<IDepartment[] | null>(null);
+  currentDepart$ = this.currentDepartSource.asObservable();
   constructor(private http: HttpClient) {}
 
-  // getDepartments() {
-  //   return this.http.get<IDepartment>(`${this.baseUrl}department/list`).subscribe({
-  //     next: (response) => (this.department = response),
-  //     error: (error) => console.log(error),
-  //   });
-  // }
-
-  getDepartments() {
+  getDepartments(): Observable<IDepartment[]> {
     return this.http.get<IDepartment[]>(`${this.baseUrl}department/list`).pipe(
       map((response: IDepartment[]) => {
         const departments = response;
         if (departments) {
-          this.departments = departments
+          this.currentDepartSource.next(departments);
         }
+        return departments;
       })
     );
   }

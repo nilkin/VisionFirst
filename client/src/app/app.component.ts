@@ -12,10 +12,9 @@ import { DepartmentService } from './_services/department.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  department: IDepartment[] | any;
   baseUrl: string = environment.baseUrl;
+  departments: IDepartment[] | any;
   constructor(
-    private http: HttpClient,
     private accountService: AccountService,
     private departmentService: DepartmentService
   ) {}
@@ -24,16 +23,16 @@ export class AppComponent implements OnInit {
     this.getDepartments();
     this.setCurrentAccoun();
   }
-
   getDepartments() {
-    this.http.get<IDepartment>(`${this.baseUrl}department/list`).subscribe({
-      next: (response) => (this.department = response),
-      error: (error) => console.log(error),
-    });
+    this.departmentService.getDepartments().subscribe(
+      (departments: IDepartment[]) => {
+        this.departments = departments;
+      },
+      (error: any) => {
+        console.error('Error retrieving departments:', error);
+      }
+    );
   }
-  // getDepartments()  {
-  //   this.department = this.departmentService.getDepartments();
-  // }
 
   setCurrentAccoun() {
     const userString = localStorage.getItem('user');
