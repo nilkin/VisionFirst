@@ -1,0 +1,29 @@
+
+<h1 >
+  <h1 class="welcome-text">Sign Up!</h1>
+</h1>
+
+    <form
+      nz-form
+      [nzLayout]="validateForm.get('formLayout')?.value"
+      [formGroup]="validateForm"
+      (ngSubmit)="submitForm()"
+    >
+
+      <nz-form-item>
+        <nz-form-control [nzSpan]="isHorizontal ? 14 : null" nzErrorTip="Please input your username!">
+          <input nz-input formControlName="username" placeholder="input placeholder" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzSpan]="isHorizontal ? 14 : null" nzErrorTip="Please input your Password!">
+          <input nz-input formControlName="password" placeholder="input placeholder" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzSpan]="isHorizontal ? 14 : null" [nzOffset]="isHorizontal ? 4 : null">
+          <button nz-button nzType="primary">Submit</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  

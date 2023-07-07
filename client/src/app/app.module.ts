@@ -8,11 +8,28 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import { HomeComponent } from './_pages/home/home.component';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { RegisterComponent } from './_pages/register/register.component';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
+
+registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    NavComponent,
+    HomeComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,9 +38,18 @@ import {MatButtonModule} from '@angular/material/button';
     FormsModule,
     BrowserAnimationsModule,
     MatButtonModule, 
-    MatMenuModule
+    MatMenuModule,
+    NzMessageModule,
+    NzButtonModule,
+    NzLayoutModule,
+    ReactiveFormsModule,
+    NzFormModule,
+    CommonModule,
+    NzRadioModule
   ],
-  providers: [],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,20 @@
+<div class="container mt-5">
+  <div *ngIf="!registerMode" class="text-center">
+    <h1 class="welcome-text">Welcome to My Website!</h1>
+    <div class="button-container text-center justify-content-between">
+      <button mat-raised-button color="primary" (click)="register()">
+        Register
+      </button>
+      <button mat-raised-button color="accent" (click)="learnMore()">
+        Learn More
+      </button>
+    </div>
+  </div>
+  <div *ngIf="registerMode" class="container">
+<div class="row justify-content-center">
+<div class="col-4">
+  <app-register></app-register>
+</div>
+</div>
+  </div>
+</div>
