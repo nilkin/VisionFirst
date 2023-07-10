@@ -1,19 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
+import { IAccount } from 'src/app/_models/account';
+import { AccountService } from 'src/app/_services/account.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
   validateForm!: UntypedFormGroup;
-
-  submitForm(): void {
+  @Output() cancelRegister = new EventEmitter();
+  constructor(private fb: UntypedFormBuilder,private accountService :AccountService) {}
+  
+  register(): any {
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
+      this.accountService.register(this.validateForm.value)
+        .then(() => {
+          console.log('Registration successful');
+        })
+        .catch((error) => {
+          console.error('Registration error:', error);
+        });
     } else {
-      Object.values(this.validateForm.controls).forEach(control => {
+      Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
@@ -21,18 +35,19 @@ export class RegisterComponent implements OnInit {
       });
     }
   }
-
-  get isHorizontal(): boolean {
-    return this.validateForm.controls['formLayout']?.value === 'horizontal';
-  }
-
-  constructor(private fb: UntypedFormBuilder) {}
+  
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      formLayout: ['horizontal'],
-      username: [null, [Validators.required]],
-      password: [null, [Validators.required]]
+      role: [1],
+      employeeId: [3],
+      email: [null, [Validators.required]],
+      password: [null, [Validators.required]],
     });
+  }
+
+  cancel() {
+    console.log('cancel');
+    this.cancelRegister.emit(false);
   }
 }

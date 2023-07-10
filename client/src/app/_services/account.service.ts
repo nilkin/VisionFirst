@@ -14,7 +14,21 @@ export class AccountService {
   currentAcc$ = this.currentAccSource.asObservable();
 
   constructor() {}
-
+  async register(model: any): Promise<void> {
+    try {
+      const response: AxiosResponse<IAccount> = await axios.post(
+        `${this.baseUrl}account/register`,
+        model
+      );
+      const user: IAccount = response.data;
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.currentAccSource.next(user);
+      }
+    } catch (error) {
+      console.error('Register error:', error);
+    }
+  }
   async login(model: any): Promise<void> {
     try {
       const response: AxiosResponse<IAccount> = await axios.post(

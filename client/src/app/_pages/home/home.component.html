@@ -2,7 +2,7 @@
   <div *ngIf="!registerMode" class="text-center">
     <h1 class="welcome-text">Welcome to My Website!</h1>
     <div class="button-container text-center justify-content-between">
-      <button mat-raised-button color="primary" (click)="register()">
+      <button mat-raised-button color="primary" (click)="registerToggle()">
         Register
       </button>
       <button mat-raised-button color="accent" (click)="learnMore()">
@@ -13,7 +13,7 @@
   <div *ngIf="registerMode" class="container">
 <div class="row justify-content-center">
 <div class="col-4">
-  <app-register></app-register>
+  <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
 </div>
 </div>
   </div>

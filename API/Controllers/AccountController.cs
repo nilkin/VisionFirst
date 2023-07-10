@@ -19,7 +19,8 @@ namespace API.Controllers
             return Ok(result);
         }
 
-        [Authorize]
+        //[Authorize]
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register(AccountAddDto model)
         {
