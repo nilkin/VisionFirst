@@ -21,6 +21,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { DepartmentListComponent } from './_pages/depatrments/department-list/department-list.component';
+import { DepartmentDetailComponent } from './_pages/depatrments/department-detail/department-detail.component';
 
 registerLocaleData(en);
 
@@ -30,6 +32,8 @@ registerLocaleData(en);
     NavComponent,
     HomeComponent,
     RegisterComponent,
+    DepartmentListComponent,
+    DepartmentDetailComponent,
   ],
   imports: [
     BrowserModule,

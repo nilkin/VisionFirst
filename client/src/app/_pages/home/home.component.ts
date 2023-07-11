@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
 
   learnMore(): void {
     this.message.info('Learn More button clicked!');
-    // Add your "Learn More" logic here
   }
 
   async getDepartments() {
