@@ -23,6 +23,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { DepartmentListComponent } from './_pages/depatrments/department-list/department-list.component';
 import { DepartmentDetailComponent } from './_pages/depatrments/department-detail/department-detail.component';
+import { ToastrModule } from 'ngx-toastr';
 
 registerLocaleData(en);
 
@@ -49,7 +50,10 @@ registerLocaleData(en);
     ReactiveFormsModule,
     NzFormModule,
     CommonModule,
-    NzRadioModule
+    NzRadioModule,
+    ToastrModule.forRoot({
+      positionClass :'toast-bottom-right'
+    })
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }

@@ -4,6 +4,7 @@ import {
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { IAccount } from 'src/app/_models/account';
 import { AccountService } from 'src/app/_services/account.service';
 
@@ -15,17 +16,25 @@ import { AccountService } from 'src/app/_services/account.service';
 export class RegisterComponent implements OnInit {
   validateForm!: UntypedFormGroup;
   @Output() cancelRegister = new EventEmitter();
-  constructor(private fb: UntypedFormBuilder,private accountService :AccountService) {}
-  
+  constructor(
+    private fb: UntypedFormBuilder,
+    private accountService: AccountService,
+    private toastr: ToastrService
+  ) {}
+
   register(): any {
     if (this.validateForm.valid) {
-      this.accountService.register(this.validateForm.value)
-        .then(() => {
-          console.log('Registration successful');
-        })
-        .catch((error) => {
-          console.error('Registration error:', error);
-        });
+      var response = this.accountService.register(this.validateForm.value);
+      console.log(response);
+      if (response.status == 200){
+        
+      }
+      response.then((response) => {
+        this.toastr.success(response, 'Registration successful');
+      });
+      response.catch((error) => {
+        this.toastr.error(error, 'Xeta');
+      });
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
@@ -35,7 +44,6 @@ export class RegisterComponent implements OnInit {
       });
     }
   }
-  
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({

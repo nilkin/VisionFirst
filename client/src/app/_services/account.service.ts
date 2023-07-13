@@ -14,36 +14,35 @@ export class AccountService {
   currentAcc$ = this.currentAccSource.asObservable();
 
   constructor() {}
-  async register(model: any): Promise<void> {
+  async register(model: any): Promise<any> {
     try {
       const response: AxiosResponse<IAccount> = await axios.post(
-        `${this.baseUrl}account/register`,
-        model
-      );
+        `${this.baseUrl}account/register`, model);
       const user: IAccount = response.data;
       if (user) {
         localStorage.setItem('user', JSON.stringify(user));
         this.currentAccSource.next(user);
+        return response;
       }
     } catch (error) {
-      console.error('Register error:', error);
+      return"Email addres is used";
     }
   }
-  async login(model: any): Promise<void> {
+  async login(model: any): Promise<any> {
     try {
-      const response: AxiosResponse<IAccount> = await axios.post(
-        `${this.baseUrl}account/login`,
-        model
-      );
-      const user: IAccount = response.data;
+      const response:AxiosResponse<IAccount> = await axios.post(
+        `${this.baseUrl}account/login`, model);
+      const user:IAccount = response.data;
       if (user) {
         localStorage.setItem('user', JSON.stringify(user));
         this.currentAccSource.next(user);
+        return response;
       }
     } catch (error) {
-      console.error('Login error:', error);
+      return"Email or password error";
     }
   }
+  
 
   setCurrentAccount(user: IAccount): void {
     this.currentAccSource.next(user);

@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from './_services/account.service';
 import { IAccount } from './_models/account';
 import { environment } from './_environments/_environment';
-import { IDepartment } from './_models/department';
-import { DepartmentService } from './_services/department.service';
-import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,25 +10,14 @@ import { lastValueFrom } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   baseUrl: string = environment.baseUrl;
-  departments: IDepartment[] | any;
   constructor(
     private accountService: AccountService,
-    private departmentService: DepartmentService
   ) {}
 
   ngOnInit(): void {
-    this.getDepartments();
+
     this.setCurrentAccoun();
   }
-  async getDepartments() {
-    try {
-      this.departments = await lastValueFrom(await this.departmentService.getDepartments());
-    } catch (error) {
-      console.error('Error retrieving departments:', error);
-    }
-  }
-  
-
   setCurrentAccoun() {
     const userString = localStorage.getItem('user');
     if (!userString) return;

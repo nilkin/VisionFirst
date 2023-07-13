@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="#">Vision First</a>
+    <a class="navbar-brand" routerLink="/" routerLinkActive="active">Vision First</a>
     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav" *ngIf="loggedIn">
         <li class="nav-item">
-          <a class="nav-link" href="#">Şöbə</a>
+          <a class="nav-link" routerLink="/departments" routerLinkActive="active">Şöbə</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Vəzifə</a>
