@@ -24,7 +24,11 @@ app.UseCors(opt =>
                    .AllowAnyHeader()
                    .AllowAnyMethod()
                    .AllowCredentials());
-
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Your API Name v1");
+});
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

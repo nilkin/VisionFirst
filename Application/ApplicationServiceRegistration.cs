@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using System.Reflection;
 
 namespace Application
@@ -31,6 +32,11 @@ namespace Application
                 opt.MinimumSameSitePolicy = SameSiteMode.None;
 
 			});
+            services.AddSwaggerGen(c =>
+             {
+                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API Name", Version = "v1" });
+             });
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Admin", policy =>
