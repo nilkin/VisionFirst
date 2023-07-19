@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../_services/account.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AccountService } from 'src/app/_services/account.service';
 
 @Component({
   selector: 'app-nav',
@@ -31,9 +31,9 @@ export class NavComponent implements OnInit {
     const response = await this.accountService.login(this.model);
     if (response.status == 200) {
       this.router.navigateByUrl('/departments');
-      this.toastr.success(`xos geldin ${response.data.email}`,'salam');
+      this.toastr.success(`xos geldin ${response.data.email}`, 'salam');
     } else {
-      this.toastr.error( response,'Xeta',);
+      this.toastr.error(response, 'Xeta');
     }
   }
 

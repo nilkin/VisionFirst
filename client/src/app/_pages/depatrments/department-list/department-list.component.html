@@ -19,7 +19,7 @@
               <td>
                 <span [innerHTML]="item.record"></span>
               </td>    
-              <td>{{ item.dateOfEntry }}</td>
+              <td>{{ item.dateOfEntry | date:'dd-MMMM-yy'}}</td>
             </tr>
           </tbody>
         </table>
