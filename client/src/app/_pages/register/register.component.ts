@@ -26,9 +26,6 @@ export class RegisterComponent implements OnInit {
     if (this.validateForm.valid) {
       var response = this.accountService.register(this.validateForm.value);
       console.log(response);
-      if (response.status == 200){
-        
-      }
       response.then((response) => {
         this.toastr.success(response, 'Registration successful');
       });

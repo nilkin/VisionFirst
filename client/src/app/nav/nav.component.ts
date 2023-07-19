@@ -13,7 +13,7 @@ export class NavComponent implements OnInit {
   loggedIn = false;
 
   constructor(
-    private accountServise: AccountService,
+    public accountService: AccountService,
     private router: Router,
     private toastr: ToastrService
   ) {}
@@ -22,13 +22,13 @@ export class NavComponent implements OnInit {
   }
 
   getCurrentUser() {
-    this.accountServise.currentAcc$.subscribe({
+    this.accountService.currentAcc$.subscribe({
       next: (user) => (this.loggedIn = !!user),
       error: (err) => console.log(err),
     });
   }
   async login() {
-    const response = await this.accountServise.login(this.model);
+    const response = await this.accountService.login(this.model);
     if (response.status == 200) {
       this.router.navigateByUrl('/departments');
       this.toastr.success(`xos geldin ${response.data.email}`,'salam');
@@ -38,7 +38,7 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
-    this.accountServise.logout();
+    this.accountService.logout();
     this.router.navigateByUrl('/');
     this.loggedIn = false;
   }

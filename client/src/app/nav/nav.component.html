@@ -1,40 +1,54 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <div class="container">
-    <a class="navbar-brand" routerLink="/" routerLinkActive="active">Vision First</a>
-    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-      <ul class="navbar-nav" *ngIf="loggedIn">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/departments" routerLinkActive="active">Şöbə</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Vəzifə</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Məzuniyyət günü</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Əməkdaşlar</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Hesablar</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Məzuniyyət sorğuları</a>
-        </li>
+    <a class="navbar-brand" routerLink="/" routerLinkActive="active"
+      >Vision First</a
+    >
+    <div
+      class="navbar-collapse collapse d-sm-inline-flex justify-content-between"
+    >
+      <ul class="navbar-nav">
+        <ng-container *ngIf="loggedIn">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/departments"
+              routerLinkActive="active"
+              >Şöbə</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Vəzifə</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Məzuniyyət günü</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Əməkdaşlar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Hesablar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Məzuniyyət sorğuları</a>
+          </li>
+        </ng-container>
       </ul>
 
       <section>
-        <div class="row"  *ngIf="loggedIn" dropdown>
-          <a mat-button color="warn" [matMenuTriggerFor]="menu">Xoş gəlmisiniz</a>
+        <div class="row" *ngIf="accountService.currentAcc$ | async as user" dropdown>
+          <a mat-button class="btn btn-outline-secondary text-warning" [matMenuTriggerFor]="menu"
+            >Xoş gəlmisiniz {{user.email.split("@").shift() |titlecase}} </a
+          >
           <mat-menu #menu="matMenu">
-            <a mat-button color="warn" class="dropdown-item" >Profil</a>
-            <a mat-button color="warn" class="dropdown-item" (click)="logout()">Çıxış</a>
+            <a mat-button color="warn" class="dropdown-item">Profil</a>
+            <a mat-button color="warn" class="dropdown-item" (click)="logout()"
+              >Çıxış</a
+            >
           </mat-menu>
         </div>
-
       </section>
       <form
-      *ngIf="!loggedIn"
+        *ngIf="!(accountService.currentAcc$ | async)"
         class="d-flex"
         #loginform="ngForm"
         (ngSubmit)="login()"
