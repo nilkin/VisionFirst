@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class init_db : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,7 +20,7 @@ namespace Persistence.Migrations
                     ShortName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Record = table.Column<string>(type: "ntext", nullable: true),
-                    DateOfEntry = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2023, 5, 1, 22, 29, 19, 264, DateTimeKind.Utc).AddTicks(6158))
+                    DateOfEntry = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2023, 7, 20, 10, 15, 40, 927, DateTimeKind.Utc).AddTicks(6807))
                 },
                 constraints: table =>
                 {
@@ -34,7 +34,7 @@ namespace Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateOfEntry = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2023, 5, 1, 22, 29, 19, 265, DateTimeKind.Utc).AddTicks(7007)),
+                    DateOfEntry = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2023, 7, 20, 10, 15, 40, 929, DateTimeKind.Utc).AddTicks(2849)),
                     DepartmentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -56,7 +56,7 @@ namespace Persistence.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateOfEntry = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2023, 5, 1, 22, 29, 19, 264, DateTimeKind.Utc).AddTicks(9336)),
+                    DateOfEntry = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2023, 7, 20, 10, 15, 40, 928, DateTimeKind.Utc).AddTicks(2477)),
                     PositionId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -78,7 +78,7 @@ namespace Persistence.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NumberOfDays = table.Column<int>(type: "int", nullable: false),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EntryDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2023, 5, 1, 22, 29, 19, 265, DateTimeKind.Utc).AddTicks(5323)),
+                    EntryDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2023, 7, 20, 10, 15, 40, 929, DateTimeKind.Utc).AddTicks(896)),
                     PositionId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -101,7 +101,7 @@ namespace Persistence.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    Role = table.Column<byte>(type: "tinyint", nullable: false)
+                    Role = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)2)
                 },
                 constraints: table =>
                 {
@@ -121,7 +121,7 @@ namespace Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)1),
-                    DateOfEntry = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2023, 5, 1, 22, 29, 19, 265, DateTimeKind.Utc).AddTicks(2791)),
+                    DateOfEntry = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2023, 7, 20, 10, 15, 40, 928, DateTimeKind.Utc).AddTicks(7627)),
                     LeaveStartTime = table.Column<DateTime>(type: "datetime", nullable: false),
                     LeaveDuration = table.Column<int>(type: "int", nullable: false),
                     EmployeeId = table.Column<int>(type: "int", nullable: false)
