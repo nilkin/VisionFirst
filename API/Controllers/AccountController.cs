@@ -22,13 +22,13 @@ namespace API.Controllers
         //[Authorize]
         [AllowAnonymous]
         [HttpPost("register")]
-        public async Task<IActionResult> Register(AccountAddDto model)
+        public async Task<IActionResult> Register(AccountApiRegisterDto model)
         {
-            CreateAccountCommand createAccountCommand = new()
+            CreateApiAccountCommand createApiAccountCommand = new()
             {
-                AccountAddDto = model
+                AccountApiRegisterDto = model
             };
-            AccountRegisterDto result = await Mediator.Send(createAccountCommand);
+            AccountRegisterDto result = await Mediator.Send(createApiAccountCommand);
             return Ok(result);
         }
     }

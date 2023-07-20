@@ -11,6 +11,8 @@ namespace Application.Feature.Accounts.Profiles
         {
             CreateMap<AccountAddDto, Account>()
                 .ForMember(t => t.Password, opt => opt.MapFrom(src => PasswordGeneratorExtension.HashPassword(src.Password, PasswordGeneratorExtension.GenerateSalt(16))));
+            CreateMap<AccountApiRegisterDto, Account>()
+                .ForMember(t => t.Password, opt => opt.MapFrom(src => PasswordGeneratorExtension.HashPassword(src.Password, PasswordGeneratorExtension.GenerateSalt(16))));
             CreateMap<AccountDetailDto, Account>()
                 .ForMember(t => t.Password, opt => opt.MapFrom(src => PasswordGeneratorExtension.HashPassword(src.NewPassword, PasswordGeneratorExtension.GenerateSalt(16))));
             CreateMap<Account, AccountDetailDto>()
