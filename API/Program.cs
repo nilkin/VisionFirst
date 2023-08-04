@@ -1,4 +1,5 @@
 using Application;
+using Application.Middleware;
 using FluentValidation.AspNetCore;
 using Persistence;
 
@@ -13,7 +14,7 @@ builder.Services.AddApplicationServices();
 
 
 var app = builder.Build();
-
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseRouting();
