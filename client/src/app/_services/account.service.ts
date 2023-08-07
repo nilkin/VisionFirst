@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { IAccount } from '../_models/account';
 import { BehaviorSubject } from 'rxjs';
-import { environment } from '../_environments/_environment';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
-  baseUrl: string = environment.baseUrl;
+  baseUrl: string = environment.apiUrl;
   private currentAccSource = new BehaviorSubject<IAccount | null>(null);
   currentAcc$ = this.currentAccSource.asObservable();
 

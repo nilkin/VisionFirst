@@ -1,15 +1,15 @@
 import axios, { AxiosResponse } from 'axios';
 import { Injectable } from '@angular/core';
-import { environment } from '../_environments/_environment';
 import { IDepartment } from '../_models/department';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable, from } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DepartmentService {
-  baseUrl: string = environment.baseUrl;
+  baseUrl: string = environment.apiUrl;
   departments: IDepartment[] | any;
   private currentDepartSource = new BehaviorSubject<IDepartment[] | null>(null);
   currentDepart$ = this.currentDepartSource.asObservable();

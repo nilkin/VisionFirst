@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './_services/account.service';
 import { IAccount } from './_models/account';
-import { environment } from './_environments/_environment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { environment } from './_environments/_environment';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  baseUrl: string = environment.baseUrl;
+  baseUrl: string = environment.apiUrl;
   constructor(
     private accountService: AccountService,
   ) {}
