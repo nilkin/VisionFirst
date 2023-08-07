@@ -1,0 +1,8 @@
+<ng-container *ngIf="error">
+  <h4>
+    Internal server error - refreshing the page will make the error disappear
+  </h4>
+  <div class="error-code">500</div>
+  <div class="error-message">Error : {{ error }}</div>
+  <a routerLink="/" class="home-link">Go back to the home page</a>
+</ng-container>

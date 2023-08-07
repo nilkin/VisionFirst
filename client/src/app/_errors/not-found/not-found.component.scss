@@ -1,0 +1,35 @@
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+  }
+  
+  .error-code {
+    font-size: 72px;
+    color: #e74c3c;
+  }
+  
+  .error-message {
+    font-size: 24px;
+    margin-top: 10px;
+    color: #333;
+  }
+  
+  .home-link {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 18px;
+    color: #3498db;
+    text-decoration: none;
+  }
+  
+  .home-link:hover {
+    text-decoration: underline;
+  }
+  

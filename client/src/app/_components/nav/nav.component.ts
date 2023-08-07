@@ -29,12 +29,8 @@ export class NavComponent implements OnInit {
   }
   async login() {
     const response = await this.accountService.login(this.model);
-    if (response.status == 200) {
-      this.router.navigateByUrl('/departments');
-      this.toastr.success(`xos geldin ${response.data.email}`, 'salam');
-    } else {
-      this.toastr.error(response, 'Xeta');
-    }
+    this.router.navigateByUrl('/departments');
+    this.toastr.success(`xos geldin ${response.data.email}`, 'salam');
   }
 
   logout() {
