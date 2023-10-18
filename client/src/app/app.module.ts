@@ -14,6 +14,7 @@ import { DepartmentListComponent } from './_pages/depatrments/department-list/de
 import { DepartmentDetailComponent } from './_pages/depatrments/department-detail/department-detail.component';
 import { SharedModule } from './_modules/shared.module';
 
+
 registerLocaleData(en);
 
 @NgModule({
@@ -23,7 +24,7 @@ registerLocaleData(en);
     HomeComponent,
     RegisterComponent,
     DepartmentListComponent,
-    DepartmentDetailComponent,
+    DepartmentDetailComponent
   ],
   imports: [
     CommonModule,

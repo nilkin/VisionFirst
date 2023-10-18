@@ -10,7 +10,7 @@ namespace API.Controllers
         [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login(AccountLoginDto account)
-        {
+         {
             LoginAccountApiCommand loginAccountCommand = new()
             {
                 AccountLoginDto = account
